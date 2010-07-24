@@ -10,6 +10,8 @@ Concrete syntax of WAE in BNF
 <WAE> ::= | <num>
           | {+ <WAE> <WAE>}
           | {- <WAE> <WAE>}
+          | {+ <WAE>}
+          | {- <WAE>}
           | {with {<id> <WAE>} WAE}
           | <id>
 |#
@@ -213,6 +215,8 @@ Concrete syntax of WAE in BNF
           (calc (subst bound-body bound-id (num (calc named-expr)))))
     (id (name) 
         (error "free identifier"))))
+
+(trace calc)
 
 (define-test-suite calc-test-suite
   (check-equal? (calc (parse '3)) 3)
